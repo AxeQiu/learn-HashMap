@@ -30,7 +30,7 @@ HashMap不是线程安全的
 Map<String, Object> map = new HashMap<>(64, 0.75f);
 ```
 
-* **containsValue(Object value)
+* **containsValue(Object value)**
 
 containsValue十分消耗性能（扫描所有元素，导致O(n)的复杂度），任何情况下应避免使用
 ```java
