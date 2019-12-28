@@ -20,3 +20,23 @@ HashMap不保证元素顺序
 **Note that this implementation is not synchronized.**
 
 HashMap不是线程安全的
+
+**MIN_TREEIFY_THRESHOLD:　The smallest table capacity for which bins may be treeified.(Otherwise the table is resized if too many nodes in a bin.) Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts between resizing and treeification thresholds.**
+
+桶数组大小至少为 TREEIFY_THRESHOLD 的4倍(TREEIFY_THRESHOLD=8，MIN_TREEIFY_THRESHOLD实际取值为64），才有可能红黑树化，否则以resize()操作代替treeify()
+
+因此，初始化HashMap时最好指定初始容量
+```java
+Map<String, Object> map = new HashMap<>(64, 0.75f);
+```
+
+**containsValue(Object value)
+
+containsValue十分消耗性能（扫描所有元素，导致O(n)的复杂度），任何情况下应避免使用
+```java
+for (int i = 0; i < tab.length; ++i) {
+  for (Node<K,V> e = tab[i]; e != null; e = e.next) {
+    ...
+  }
+}
+```
