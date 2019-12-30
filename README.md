@@ -44,3 +44,7 @@ for (int i = 0; i < tab.length; ++i) {
 * **Node<K, V>的对象成员hash和hashCode()方法**
 
 Node<K, V>的对象成员hash存储的是key的hash(使用key的hashCode高低位异或) ; 自身的hashCode()方法是key的hashCode异或value的hashCode. Node<K, V>的hashCode()方法不参与get, put过程.
+
+* **为何哈希桶数据的长度必须是2的幂**
+
+当计算哈希桶数据位置时, 使用的是取模操作, 即: hash(key) % table.length  . 直接计算模值比较消耗性能. 可以利用取模运算的性质, 即当a % b, b为2的幂时, a % b 等价于  a & (b - 1). 因此保证table.length为2的幂, 计算位置时即可: (table.length - 1) & hash, 造价于取模运算
