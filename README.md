@@ -40,3 +40,7 @@ for (int i = 0; i < tab.length; ++i) {
   }
 }
 ```
+
+* **Node<K, V>的对象成员hash和hashCode()方法**
+
+Node<K, V>的对象成员hash存储的是key的hash(使用key的hashCode高低位异或) ; 自身的hashCode()方法是key的hashCode异或value的hashCode. Node<K, V>的hashCode()方法不参与get, put过程.
